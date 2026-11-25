@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>أبطال التكنولوجيا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: playful, bright, made for a grade 4 boy holding a phone
+   IDEA: a three-level hero quest with badges, like a video game map
+   PICTURE: the level cards and the live question card are the picture
+   COLOUR and TYPE: deep game-night blue, teal, coral, sun yellow; Baloo Bhaijaan 2
+   LAYOUT: one column, sticky top bar with stars, big thumb-sized answers */
+:root{color-scheme:light;--bg:#17325a;--bg2:#1f4275;--card:#fff;--ink:#1d2b3a;--muted:#5d6b78;--teal:#12a39a;--coral:#ff5d5d;--sun:#ffb823;--green:#26b46b;--violet:#7a5cff;--soft:#eef5f8}
+*{box-sizing:border-box;min-width:0;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg) radial-gradient(circle at 80% -10%,#2c5c9c 0,transparent 55%);background-attachment:fixed;color:var(--ink);font:17px/1.5 "Baloo Bhaijaan 2",system-ui,sans-serif;min-height:100vh;overflow-x:clip}
+.wrap{max-width:640px;margin:0 auto;padding:0 14px 40px}
+.top{position:sticky;top:0;z-index:5;background:rgba(23,50,90,.94);backdrop-filter:blur(6px);display:flex;align-items:center;gap:8px;padding:10px 14px;color:#fff}
+.top b{font-size:18px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{background:rgba(255,255,255,.14);border-radius:20px;padding:4px 12px;font-weight:800;white-space:nowrap}
+.ib{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:14px;min-width:44px;min-height:44px;font-size:18px;cursor:pointer;font-family:inherit;font-weight:700;padding:0 10px}
+.head{color:#dce8f5;text-align:center;font-size:14px;line-height:1.5;padding:14px 4px 4px}
+.head strong{color:#fff;font-size:15px}
+h1{color:#fff;text-align:center;font-size:clamp(28px,8vw,40px);line-height:1.1;margin:10px 0 6px;font-weight:800}
+h1 span{color:var(--sun)}
+.lead{color:#dce8f5;text-align:center;margin:0 0 16px}
+.card{background:var(--card);border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 6px 0 rgba(0,0,0,.18)}
+label.f{display:block;font-weight:700;margin:6px 0 4px}
+input[type=text],select{width:100%;font:inherit;font-size:17px;min-height:50px;border:2px solid #d4e1e8;border-radius:14px;padding:6px 12px;background:#fff;color:var(--ink)}
+input:focus,select:focus,button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.btn{display:block;width:100%;border:0;border-radius:16px;min-height:56px;font:inherit;font-size:20px;font-weight:800;color:#fff;background:var(--teal);box-shadow:0 5px 0 #0b7a73;cursor:pointer;margin-top:14px}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #0b7a73}
+.btn.coral{background:var(--coral);box-shadow:0 5px 0 #c94242}
+.btn.sun{background:var(--sun);color:#3a2a00;box-shadow:0 5px 0 #c68a00}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.lv{display:flex;align-items:center;gap:14px;cursor:pointer;border:0;background:none;padding:0;width:100%;text-align:right;font:inherit;color:var(--ink)}
+.lv .ic{flex:none;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:30px;color:#fff;font-weight:800}
+.lv h3{margin:0;font-size:21px}.lv p{margin:0;color:var(--muted);font-size:15px}
+.lv.locked{opacity:.55;cursor:not-allowed}
+.lv .st{margin-inline-start:auto;font-size:24px}
+.bar{height:12px;border-radius:8px;background:var(--soft);overflow:hidden;margin:8px 0 2px}.bar i{display:block;height:100%;background:var(--green);border-radius:8px;transition:width .3s}
+.q{font-size:19px;font-weight:700;margin:0 0 12px}
+.qn{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--violet);color:#fff;font-size:16px;margin-inline-end:8px;vertical-align:middle}
+.opts{display:grid;gap:10px}
+.opt{border:2px solid #d4e1e8;background:#fff;border-radius:16px;min-height:54px;padding:8px 14px;font:inherit;font-size:18px;text-align:right;cursor:pointer;color:var(--ink);display:flex;align-items:center;gap:10px}
+.opt .dot{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #b7c8d2}
+.opt.sel{border-color:var(--violet);background:#f2efff}.opt.sel .dot{border-color:var(--violet);background:var(--violet);box-shadow:inset 0 0 0 4px #fff}
+.opt.ok{border-color:var(--green);background:#e8f8ef}.opt.bad{border-color:var(--coral);background:#ffeeee}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.fb{margin-top:8px;font-weight:700;min-height:1.5em}.fb.ok{color:var(--green)}.fb.bad{color:#d33}
+.match h4{margin:4px 0 8px;font-size:16px;color:var(--muted)}
+.items{display:grid;gap:10px;margin-bottom:14px}
+.item{border:2px dashed #b7c8d2;border-radius:16px;padding:10px 12px;display:flex;gap:12px;align-items:center;cursor:pointer;background:#fff;font:inherit;text-align:right;color:var(--ink);min-height:64px}
+.item.act{border-style:solid;border-color:var(--sun);background:#fff8e6}
+.item.done{border-style:solid;border-color:var(--teal)}
+.item.ok{border-color:var(--green);background:#e8f8ef}.item.bad{border-color:var(--coral);background:#ffeeee}
+.item svg{flex:none;width:58px;height:58px}
+.item .t{font-weight:700}.item .a{display:block;color:var(--teal);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:0;border-radius:14px;padding:8px 14px;min-height:46px;font:inherit;font-size:16px;font-weight:700;background:var(--soft);color:var(--ink);cursor:pointer;text-align:right}
+.chip.used{opacity:.35}
+.chip.ready{background:#dff4f2;outline:2px solid var(--teal)}
+.hint{background:#fff8e6;border-radius:12px;padding:8px 12px;font-size:15px;margin-bottom:12px}
+.modal{position:fixed;inset:0;background:rgba(10,20,40,.7);display:none;align-items:center;justify-content:center;padding:14px;z-index:20}
+.modal.on{display:flex}
+.mbox{background:#fff;border-radius:24px;max-width:560px;width:100%;max-height:88vh;overflow:auto;padding:20px;position:relative}
+.x{position:absolute;top:10px;left:10px;width:44px;height:44px;border-radius:50%;border:0;background:var(--soft);font-size:20px;cursor:pointer}
+.win{text-align:center}.win .big{font-size:64px;line-height:1}
+.badge{display:inline-grid;place-items:center;width:110px;height:110px;border-radius:50%;color:#fff;font-size:44px;box-shadow:inset 0 -8px 0 rgba(0,0,0,.18),0 6px 14px rgba(0,0,0,.2);margin:6px auto}
+.bronze{background:#c9773a}.silver{background:#9aa8b5}.gold{background:#e7a815}
+.cert{border:6px double var(--sun);border-radius:20px;padding:18px;text-align:center;background:#fffdf6}
+.cert h2{margin:6px 0;color:var(--bg);font-size:26px}
+.cert .nm{font-size:30px;font-weight:800;color:var(--coral);margin:4px 0}
+.cert .row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+.cert .sc{background:var(--soft);border-radius:14px;padding:6px 12px;font-weight:700}
+.small{font-size:14px;color:var(--muted)}
+.key h3{margin:14px 0 6px;color:var(--bg)}.key li{margin-bottom:4px}
+.foot{text-align:center;color:#c8d8ea;font-size:14px;margin-top:20px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="top">
+  <b id="tt">أبطال التكنولوجيا</b>
+  <span class="pill">⭐ <span id="stars">0</span></span>
+  <button class="ib" id="snd" aria-label="الصوت">🔊</button>
+  <button class="ib" id="keyBtn">دليل المعلم</button>
+</div>
+<div class="wrap" id="app"></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="x" id="mx" aria-label="إغلاق">✕</button><div id="mc"></div></div></div>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- content ---------- */
+const L1=[
+ ['الجهاز المستخدم لإدخال الصور والوثائق إلى الحاسوب كملف رقمي هو:',['الماسح الضوئي','الطابعة','السماعات','الشاشة']],
+ ['جهاز يلتقط الصور ومقاطع الفيديو ويخزنها بشكل رقمي:',['كاميرا الفيديو الرقمية (HD)','الماسح الضوئي','الميكروفون','لوحة المفاتيح']],
+ ['جهاز يستخدم لإدخال الصور والرسومات والوثائق:',['الماسح الضوئي','الفأرة','السماعات','الطابعة']],
+ ['امتداد الملفات النصية التي تحتوي على نص مع صور أو بدونها:',['.doc / .docx','.mp3','.jpg','.mp4']],
+ ['تستخدم لالتقاط الصور والصوت والفيديو وتوصيلها بالحاسوب:',['أجهزة الالتقاط','أجهزة الإخراج','وحدات التخزين','البرامج التطبيقية']],
+ ['الامتداد ‎.mp3‎ يدل على:',['ملف صوتي','ملف صورة','ملف نصي','ملف فيديو']],
+ ['امتداد ملفات الصور:',['.jpg','.mp3','.docx','.wav']],
+ ['يستخدم برنامج Audacity في:',['تحرير الصوت','تحرير الصور','كتابة النصوص','تصميم العروض التقديمية']]
+];
+const L3=[
+ ['من إرشادات تسجيل مقطع صوتي:',['الاستماع إلى الصوت بسماعات الرأس','التسجيل في مكان مزدحم','التحدث بعيدًا جدًا عن الميكروفون','تشغيل الموسيقى أثناء التسجيل']],
+ ['يساعدك امتداد الملف على:',['تحديد البرنامج اللازم لفتح الملف','زيادة حجم الملف','حذف الملف','تغيير لون الملف']],
+ ['أصغر وحدة لقياس حجم الملفات:',['Byte','KB','MB','GB']],
+ ['أكبر وحدة لقياس حجم الملفات من بين الوحدات التالية:',['TB','GB','MB','KB']],
+ ['حقوق الطبع والنشر هي:',['قوانين لحماية الملكية الفكرية','برنامج لتحرير الفيديو','نوع من أنواع الملفات','جهاز من أجهزة الإدخال']],
+ ['متى تملك حقوق النشر تلقائيًا؟',['عند كتابة قصيدة أو رسم عمل فني','عند نسخ صورة من الإنترنت','عند تنزيل أغنية','عند شراء جهاز حاسوب']],
+ ['الجزء المسؤول عن معاينة الفيديو في برنامج Clipchamp:',['منصة الفيديو (Video Stage)','الشريط الزمني (Timeline)','شريط الأدوات (Toolbar)','لوحة الخصائص (Property Panel)']],
+ ['الملف الذي يشغل مساحة تخزين كبيرة:',['ملف الفيديو','الملف النصي','ملف صورة صغيرة','ملف صوتي قصير']],
+ ['من الإرشادات الصحيحة عند التسجيل الصوتي:',['اختيار مكان مناسب للتسجيل','التسجيل بجانب جهاز مرتفع الصوت','الصراخ أمام الميكروفون','التحدث مع الآخرين أثناء التسجيل']]
+];
+const IMG={
+ ports:'<svg viewBox="0 0 60 60"><rect x="4" y="14" width="52" height="32" rx="6" fill="#2b3a4a"/><circle cx="17" cy="30" r="6" fill="#ff7ab6"/><circle cx="30" cy="30" r="6" fill="#4cd07d"/><circle cx="43" cy="30" r="6" fill="#4aa8ff"/><circle cx="17" cy="30" r="2" fill="#2b3a4a"/><circle cx="30" cy="30" r="2" fill="#2b3a4a"/><circle cx="43" cy="30" r="2" fill="#2b3a4a"/></svg>',
+ usb:'<svg viewBox="0 0 60 60"><rect x="8" y="22" width="22" height="16" rx="3" fill="#8a99a8"/><rect x="12" y="26" width="14" height="5" fill="#2b3a4a"/><rect x="30" y="27" width="22" height="6" rx="3" fill="#2b3a4a"/><rect x="36" y="44" width="16" height="8" rx="4" fill="#8a99a8"/><rect x="40" y="46.5" width="8" height="3" rx="1.5" fill="#2b3a4a"/><path d="M44 33v11" stroke="#2b3a4a" stroke-width="3"/></svg>',
+ phone:'<svg viewBox="0 0 60 60"><rect x="17" y="5" width="26" height="50" rx="6" fill="#2b3a4a"/><rect x="20" y="11" width="20" height="36" rx="2" fill="#5fd0ff"/><circle cx="30" cy="51" r="2" fill="#8a99a8"/></svg>',
+ copy:'<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="none" stroke="#ff5d5d" stroke-width="5"/><text x="30" y="40" text-anchor="middle" font-size="30" font-weight="800" fill="#ff5d5d" font-family="Arial">C</text></svg>',
+ clip:'<svg viewBox="0 0 60 60"><rect x="3" y="8" width="54" height="44" rx="5" fill="#eef1ff" stroke="#7a5cff" stroke-width="2"/><rect x="6" y="12" width="8" height="26" rx="2" fill="#7a5cff"/><rect x="17" y="12" width="26" height="20" rx="2" fill="#2b3a4a"/><path d="M27 18l8 4-8 4z" fill="#fff"/><rect x="46" y="12" width="8" height="26" rx="2" fill="#ffb823"/><rect x="6" y="41" width="48" height="7" rx="2" fill="#12a39a"/></svg>',
+ stage:'<svg viewBox="0 0 60 60"><rect x="5" y="10" width="50" height="34" rx="4" fill="#2b3a4a"/><rect x="9" y="14" width="42" height="26" rx="2" fill="#5fd0ff"/><circle cx="30" cy="27" r="8" fill="#fff"/><path d="M27.5 23l7 4-7 4z" fill="#ff5d5d"/><rect x="22" y="47" width="16" height="4" rx="2" fill="#8a99a8"/></svg>'
+};
+const L2=[
+ {t:'التحدي الأول: المفاهيم والصور',h:'المس الصورة ثم اختر اسمها الصحيح من البطاقات.',items:[
+   [IMG.ports,'منافذ الميكروفون والسماعات'],[IMG.usb,'منافذ USB و USB-C'],[IMG.phone,'الهاتف المحمول'],
+   [IMG.copy,'رمز حقوق الطبع والنشر ©'],[IMG.clip,'واجهة برنامج Clipchamp'],[IMG.stage,'منصة الفيديو (Video Stage)']],img:true},
+ {t:'التحدي الثاني: أجزاء واجهة Clipchamp',h:'المس اسم الجزء ثم اختر وظيفته.',items:[
+   ['شريط الأدوات (Toolbar)','إضافة الوسائط والنصوص والمقاطع'],['منصة الفيديو (Video Stage)','معاينة الفيديو أثناء العمل'],
+   ['الشريط الزمني (Timeline)','ترتيب المقاطع وتحريرها'],['لوحة الخصائص (Property Panel)','تغيير إعدادات العنصر المحدد مثل الحجم والتأثيرات والألوان']]},
+ {t:'التحدي الثالث: وظائف الأجهزة',h:'المس الوظيفة ثم اختر الجهاز المناسب لها.',items:[
+   ['تسجيل المقاطع الصوتية','سماعة الرأس مع الميكروفون'],['الإدخال الرقمي للصور والوثائق','الماسح الضوئي'],['التقاط الصور والفيديو','الكاميرا الرقمية / كاميرا الفيديو']]}
+];
+const LEVELS=[
+ {n:'المستكشف',d:'أجهزة الالتقاط وأنواع الملفات وبرامج الصوت',c:'var(--teal)',ic:'🔍',medal:'bronze',mn:'الوسام البرونزي',total:8},
+ {n:'المبرمج المبدع',d:'المنافذ والأجهزة وواجهة Clipchamp',c:'var(--coral)',ic:'💻',medal:'silver',mn:'الوسام الفضي',total:13},
+ {n:'البطل الخبير',d:'وحدات القياس وحقوق النشر وإرشادات التسجيل',c:'var(--violet)',ic:'🏆',medal:'gold',mn:'الوسام الذهبي',total:9}
+];
+
+/* ---------- state ---------- */
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const prep=qs=>qs.map(([q,o])=>({q,o:shuffle(o.map((t,i)=>({t,ok:i===0})))}));
+let st={name:'',cls:'',done:[false,false,false],score:[0,0,0],stars:0,view:'home'};
+try{const s=JSON.parse(localStorage.getItem('ictg4')||'null');if(s&&s.done)st=Object.assign(st,s,{view:'home'})}catch(e){}
+const save=()=>{try{localStorage.setItem('ictg4',JSON.stringify(st))}catch(e){}};
+let Q1=prep(L1),Q3=prep(L3),ans={},M=[],firstTry={};
+let sound=true,ac=null;
+function tone(f,d,v,type){if(!sound)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();const o=ac.createOscillator(),g=ac.createGain();o.type=type||'sine';o.frequency.value=f;g.gain.setValueAtTime(v||.2,ac.currentTime);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+d);o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+d+.02)}catch(e){}}
+const sOk=()=>{tone(660,.12);setTimeout(()=>tone(880,.18),110)},sBad=()=>tone(200,.25,.2,'square'),sTap=()=>tone(520,.05,.1),sWin=()=>[523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.3,.25,'triangle'),i*150));
+
+/* ---------- views ---------- */
+const app=$('app');
+function setStars(){$('stars').textContent=st.stars}
+function home(){
+  st.view='home';Q1=prep(L1);Q3=prep(L3);ans={};firstTry={};
+  const all=st.done.every(Boolean);
+  app.innerHTML=`
+  <div class="head"><strong>وزارة التربية والتعليم والتعليم العالي – دولة قطر</strong><br>مدرسة الرشاد النموذجية للبنين • الحوسبة وتكنولوجيا المعلومات<br>الصف الرابع • نهاية الفصل الدراسي الأول</div>
+  <h1>أهلاً بك في تحدي <span>أبطال التكنولوجيا!</span></h1>
+  <p class="lead">تدريبات إثرائية تفاعلية لنهاية الفصل الأول في ثلاثة مستويات متدرجة. اجتز كل مستوى ليفتح لك التالي، واحصل على الأوسمة والشهادة.</p>
+  <div class="card">
+    <label class="f" for="nm">اسم الطالب</label>
+    <input type="text" id="nm" maxlength="40" placeholder="اكتب اسمك هنا" value="${esc(st.name)}">
+    <label class="f" for="cl">الشعبة</label>
+    <select id="cl"><option value="">اختر الشعبة</option>${[1,2,3,4,5].map(n=>`<option ${st.cls==n?'selected':''} value="${n}">4 / ${n}</option>`).join('')}</select>
+  </div>
+  ${LEVELS.map((l,i)=>{const lock=i>0&&!st.done[i-1];return `<div class="card"><button class="lv ${lock?'locked':''}" data-l="${i}" ${lock?'aria-disabled="true"':''}>
+    <span class="ic" style="background:${l.c}">${lock?'🔒':l.ic}</span>
+    <span><h3>المستوى ${i+1}: ${l.n}</h3><p>${l.d} • ${l.total} ${l.total>10?'سؤالاً':'أسئلة'}</p></span>
+    <span class="st">${st.done[i]?'✅':''}</span></button>
+    <div class="bar"><i style="width:${st.done[i]?100:0}%"></i></div><div class="small">${st.done[i]?st.score[i]+' / '+l.total:'0 / '+l.total}</div></div>`}).join('')}
+  ${all?'<button class="btn sun" id="cert">🎓 عرض شهادتي</button>':''}
+  <button class="btn coral" id="reset" style="margin-top:18px">↺ إعادة التحدي من البداية</button>
+  <p class="foot">علم .. قيم .. مستقبل أفضل • متعلم ريادي لتنمية مستدامة</p>`;
+  $('nm').oninput=e=>{st.name=e.target.value.trim();save()};
+  $('cl').onchange=e=>{st.cls=e.target.value;save()};
+  app.querySelectorAll('.lv').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.l;if(i>0&&!st.done[i-1]){sBad();return}
+    if(!st.name||!st.cls){msg('<div class="win"><div class="big">✍️</div><h2>اكتب اسمك واختر شعبتك أولاً</h2></div>');sBad();return}
+    sTap();i===1?level2(0):mcq(i)});
+  if(all)$('cert').onclick=cert;
+  $('reset').onclick=()=>{st.done=[false,false,false];st.score=[0,0,0];st.stars=0;save();setStars();home();scrollTo(0,0)};
+  setStars();
+}
+function mcq(li){
+  st.view='l'+li;const Q=li===0?Q1:Q3,L=LEVELS[li];
+  const answered=()=>Q.filter((q,i)=>ans[li+'-'+i]!=null).length;
+  app.innerHTML=`<h1 style="font-size:28px">المستوى ${li+1}: <span>${L.n}</span></h1>
+  <div class="card" style="padding:12px 16px"><div class="bar"><i id="pb"></i></div><div class="small" id="pt"></div></div>
+  ${Q.map((q,i)=>`<div class="card" id="c${i}"><p class="q"><span class="qn">${i+1}</span>${esc(q.q)}</p><div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${i}" data-o="${j}"><span class="dot"></span><span class="${/^[.A-Za-z]/.test(o.t)?'ltr':''}">${esc(o.t)}</span></button>`).join('')}</div><div class="fb" id="f${i}"></div></div>`).join('')}
+  <button class="btn" id="chk">تحقق من إجاباتي</button>
+  <button class="btn sun" id="back" style="margin-top:12px">↩ العودة للمستويات</button>`;
+  const prog=()=>{const a=answered();$('pb').style.width=a/Q.length*100+'%';$('pt').textContent=a+' / '+Q.length+' تمت الإجابة'};
+  app.querySelectorAll('.opt').forEach(b=>{const k=li+'-'+b.dataset.q;if(ans[k]==b.dataset.o)b.classList.add('sel');
+    b.onclick=()=>{sTap();ans[k]=+b.dataset.o;b.parentNode.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel','ok','bad'));b.classList.add('sel');$('f'+b.dataset.q).textContent='';prog()}});
+  prog();
+  $('back').onclick=()=>{home();scrollTo(0,0)};
+  $('chk').onclick=()=>{
+    if(answered()<Q.length){const i=Q.findIndex((q,i)=>ans[li+'-'+i]==null);msg(`<div class="win"><div class="big">🤔</div><h2>أجب عن جميع الأسئلة أولاً</h2><p>بقي ${Q.length-answered()} من الأسئلة</p></div>`);$('c'+i).scrollIntoView({behavior:'smooth',block:'center'});sBad();return}
+    let ok=0;
+    Q.forEach((q,i)=>{const k=li+'-'+i,j=ans[k],good=q.o[j].ok,b=$('c'+i).querySelectorAll('.opt')[j];
+      b.classList.add(good?'ok':'bad');$('f'+i).className='fb '+(good?'ok':'bad');$('f'+i).textContent=good?'✔ إجابة صحيحة':'✘ حاول مرة أخرى';
+      if(good){ok++;if(firstTry[k]==null){firstTry[k]=1;st.stars++}}else firstTry[k]=firstTry[k]||0});
+    setStars();save();
+    if(ok===Q.length){sWin();pass(li,Q.length)}else{sBad();const i=Q.findIndex((q,i)=>!q.o[ans[li+'-'+i]].ok);
+      msg(`<div class="win"><div class="big">💪</div><h2>${ok} من ${Q.length} إجابات صحيحة</h2><p>صحّح الإجابات الحمراء ثم اضغط «تحقق» مرة أخرى</p></div>`);
+      setTimeout(()=>$('c'+i).scrollIntoView({behavior:'smooth',block:'center'}),50)}
+  };
+  scrollTo(0,0);
+}
+function level2(ci){
+  st.view='l1';const C=L2[ci];
+  if(!M[ci])M[ci]={pairs:{},act:null,ans:shuffle(C.items.map((x,i)=>i)),checked:false};
+  const m=M[ci];
+  if(m.act==null&&!Object.keys(m.pairs).length)m.act=0;
+  const prevDone=L2.slice(0,ci).reduce((a,c)=>a+c.items.length,0);
+  app.innerHTML=`<h1 style="font-size:28px">المستوى 2: <span>المبرمج المبدع</span></h1>
+  <div class="card" style="padding:12px 16px"><div class="bar"><i style="width:${(prevDone+Object.keys(m.pairs).length)/13*100}%"></i></div><div class="small">${prevDone+Object.keys(m.pairs).length} / 13</div></div>
+  <div class="card match"><p class="q">${C.t}</p><div class="hint">👆 ${C.h}</div>
+  <div class="items">${C.items.map((it,i)=>{const p=m.pairs[i];return `<button class="item ${m.act===i?'act':''} ${p!=null?'done':''}" data-i="${i}">${C.img?it[0]:`<span class="qn" style="background:var(--coral)">${i+1}</span>`}<span><span class="t">${C.img?'اختر الاسم':esc(it[0])}</span>${p!=null?`<span class="a">← ${esc(C.items[p][1])}</span>`:''}</span></button>`}).join('')}</div>
+  <h4>البطاقات</h4><div class="chips">${m.ans.map(a=>{const used=Object.values(m.pairs).includes(a);return `<button class="chip ${used?'used':''} ${m.act!=null&&!used?'ready':''}" data-a="${a}">${esc(C.items[a][1])}</button>`}).join('')}</div>
+  <div class="fb" id="mf"></div></div>
+  <button class="btn" id="chk">تحقق من إجاباتي</button>
+  <button class="btn sun" id="back" style="margin-top:12px">↩ العودة للمستويات</button>`;
+  app.querySelectorAll('.item').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;sTap();
+    if(m.pairs[i]!=null&&m.act!==i){delete m.pairs[i];m.act=i}else m.act=m.act===i?null:i;level2(ci)});
+  app.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const a=+b.dataset.a;
+    if(m.act==null){$('mf').className='fb bad';$('mf').textContent='اختر عنصرًا من الأعلى أولاً';sBad();return}
+    for(const k in m.pairs)if(m.pairs[k]===a)delete m.pairs[k];
+    m.pairs[m.act]=a;sTap();const next=C.items.findIndex((x,i)=>m.pairs[i]==null);m.act=next<0?null:next;level2(ci)});
+  $('back').onclick=()=>{home();scrollTo(0,0)};
+  $('chk').onclick=()=>{
+    if(Object.keys(m.pairs).length<C.items.length){$('mf').className='fb bad';$('mf').textContent='صِل جميع العناصر أولاً';sBad();return}
+    let ok=0;app.querySelectorAll('.item').forEach(b=>{const i=+b.dataset.i,g=m.pairs[i]===i;b.classList.add(g?'ok':'bad');
+      const k='2-'+ci+'-'+i;if(g){ok++;if(firstTry[k]==null){firstTry[k]=1;st.stars++}}else firstTry[k]=firstTry[k]||0});
+    setStars();save();
+    if(ok===C.items.length){sOk();
+      if(ci<2){msg(`<div class="win"><div class="big">🎯</div><h2>أحسنت! أنهيت ${C.t.split(':')[0]}</h2></div>`,()=>level2(ci+1),'انتقل للتحدي التالي')}
+      else{sWin();pass(1,13)}}
+    else{sBad();$('mf').className='fb bad';$('mf').textContent=`${ok} من ${C.items.length} صحيحة — المس العنصر الأحمر لتغيير إجابته`;
+      for(const k in m.pairs)if(m.pairs[k]!=+k)delete m.pairs[k];setTimeout(()=>level2(ci),1300)}
+  };
+}
+function pass(li,total){
+  st.done[li]=true;st.score[li]=total;save();
+  const L=LEVELS[li],last=li===2;
+  msg(`<div class="win"><div class="big">🎉</div><h2>أحسنت يا بطل!</h2><div class="badge ${L.medal}">${L.ic}</div><p><b>${L.mn}</b> – وسام ${L.n}</p><p>${total} / ${total}</p></div>`,
+    ()=>{if(last)cert();else{home();scrollTo(0,0)}},last?'🎓 عرض الشهادة':'انتقل للمستوى التالي');
+}
+function cert(){
+  sWin();
+  msg(`<div class="cert"><div class="small">وزارة التربية والتعليم والتعليم العالي – دولة قطر<br>مدرسة الرشاد النموذجية للبنين • الحوسبة وتكنولوجيا المعلومات • نهاية الفصل الدراسي الأول</div>
+  <h2>شهادة تفوق وتميز رقمي</h2><p>تُمنح هذه الشهادة للطالب المبدع</p><div class="nm">${esc(st.name||'البطل')}</div><p>من الصف الرابع – الشعبة ${esc(st.cls||'-')} لاجتيازه مستويات التمايز الثلاثة بنجاح</p>
+  <div class="row"><span class="badge bronze" style="width:70px;height:70px;font-size:28px">🔍</span><span class="badge silver" style="width:70px;height:70px;font-size:28px">💻</span><span class="badge gold" style="width:70px;height:70px;font-size:28px">🏆</span></div>
+  <div class="row"><span class="sc">المستكشف ${st.score[0]}/8</span><span class="sc">المبرمج المبدع ${st.score[1]}/13</span><span class="sc">البطل الخبير ${st.score[2]}/9</span></div>
+  <p><b>وسام بطل التكنولوجيا</b> • ⭐ ${st.stars} نجمة</p><div class="small">علم .. قيم .. مستقبل أفضل<br>متعلم ريادي لتنمية مستدامة</div></div>
+  <p class="small" style="text-align:center">📸 خذ لقطة شاشة لحفظ شهادتك وإرسالها لمعلمك</p>`,()=>{home();scrollTo(0,0)},'العودة للمستويات');
+}
+function msg(html,next,label){
+  $('mc').innerHTML=html+(next?`<button class="btn" id="mn">${label}</button>`:`<button class="btn" id="mn">حسنًا</button>`);
+  $('modal').classList.add('on');
+  $('mn').onclick=()=>{$('modal').classList.remove('on');if(next)next()};
+}
+$('mx').onclick=()=>$('modal').classList.remove('on');
+$('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('on')};
+$('snd').onclick=()=>{sound=!sound;$('snd').textContent=sound?'🔊':'🔇'};
+$('keyBtn').onclick=()=>{
+  msg(`<div class="key"><h2>دليل الإجابات للمعلم</h2>
+  <h3>المستوى الأول: المستكشف</h3><ol>${L1.map(q=>`<li>${esc(q[1][0])}</li>`).join('')}</ol>
+  <h3>المستوى الثاني: المبرمج المبدع</h3>${L2.map(c=>`<b>${c.t}</b><ul>${c.items.map(it=>`<li>${c.img?esc(it[1]):esc(it[0])+' ← '+esc(it[1])}</li>`).join('')}</ul>`).join('')}
+  <h3>المستوى الثالث: البطل الخبير</h3><ol>${L3.map(q=>`<li>${esc(q[1][0])}</li>`).join('')}</ol></div>`);
+};
+home();
+}
+</script>
+</body>
+</html>
